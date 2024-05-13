@@ -5,6 +5,8 @@ import './UserManage.scss'
 import {getAllUsers} from '../../services/userService';
 import ModalUser from './ModalUser';
 import { createNewUserService } from '../../services/userService';
+import {deleteUserService} from '../../services/userService';
+import { emitter } from '../../utils/emitter';
 
 class UserManage extends Component {
 
@@ -60,6 +62,11 @@ class UserManage extends Component {
                 alert(response.errMessage)
             }else{
                 await this.getAllUsersFromReact();
+                this.setState({
+                    isOpenModalUser:false,
+                }) 
+                // emitter.emit('Event_Clear_Modal_Data',{'id':'your id'})
+                emitter.emit('Event_Clear_Modal_Data')
             }
         }catch(e){
             console.log(e)
@@ -68,8 +75,24 @@ class UserManage extends Component {
         console.log('check data from child: ',data)
     }
 
+    handleDeleteUser = async(user) => {
+        try{
+            let response = await deleteUserService(user.id)
+            if(response&&response.errCode !==0){
+                alert(response.errMessage)
+            }else{
+                await this.getAllUsersFromReact();
+            }
+
+        }catch(e){
+            console.log(e)
+        }
+        alert('click delete')
+        console.log('check id delete: ',user.id)
+    }
+
     /** Life cycle
-    * Run component
+    * Run component+
     * 1. Run constructor ->init state
     * 2. Did mount (set state)
     * 3. Render 
@@ -107,14 +130,19 @@ class UserManage extends Component {
                                         // console.log('eric check map',item, index)
                                         return(
                                             
-                                            <tr >
+                                            <tr key={index}>
                                                 <td>{item.email}</td>
                                                 <td>{item.firstName}</td>
                                                 <td>{item.lastName}</td>
                                                 <td>{item.address}</td>
                                                 <td>
                                                     <button className='btn-edit'><i className="fas fa-pencil-alt"></i></button>
-                                                    <button className='btn-delete'><i className="fas fa-trash-alt"></i></button>
+                                                    <button 
+                                                        className='btn-delete'
+                                                        onClick={()=>this.handleDeleteUser(item)}
+                                                    >
+                                                        <i className="fas fa-trash-alt" ></i>
+                                                    </button>
                                                 </td>
                                             </tr>
                                         )

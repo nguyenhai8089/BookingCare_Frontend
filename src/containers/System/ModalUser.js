@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter,Input } from 'reactstrap';
+import { emitter } from '../../utils/emitter';
 
 class ModalUser extends Component {
 
@@ -15,7 +16,25 @@ class ModalUser extends Component {
             address:'',
            
         }
+        this.listenToEmitter();
 
+    }
+
+    listenToEmitter(){
+        // emitter.on('Event_Clear_Modal_Data',data=>{
+        //     console.log('listen emitter from parent: ', data)
+        // })
+        emitter.on('Event_Clear_Modal_Data',()=>{
+            // reset state
+            this.setState({
+                email:'',
+                password:'',
+                firstName:'',
+                lastName:'',            
+                address:'',
+               
+            })
+            })
     }
 
     componentDidMount() {
@@ -131,7 +150,7 @@ class ModalUser extends Component {
                 </ModalBody>
                 <ModalFooter>
                     <Button color="primary" className='px-3' onClick={()=>this.handleAddNewUser()}>
-                        Save changes
+                        Add new
                     </Button>{' '}
                     <Button color="secondary" className='px-3' onClick={()=>this.toggle()}>
                         close
