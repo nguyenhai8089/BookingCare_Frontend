@@ -1,0 +1,25 @@
+.section-specialty{
+    height: 330px;
+    background:#f5f5f5;
+    border:1px solid red;
+
+}
+
+.slick-prev{
+    border:1px solid green !important;
+    position: relative;
+    left:0 !important;
+    padding-top: 100px !important;
+    margin: auto;
+    height: 100px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.slick-next{
+    border:1px solid red !important;
+    // position: relative;
+    right:0 !important;
+
+}
