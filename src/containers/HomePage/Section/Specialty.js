@@ -5,6 +5,8 @@ import { FormattedMessage } from "react-intl";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import specialtyImg from "../../../assets/logo.svg";
+
 class Specialty extends Component {
       changeLanguage = (language) => {
             this.props.changeLanguageAppRedux(language);
@@ -16,32 +18,48 @@ class Specialty extends Component {
                   dots: true,
                   infinite: true,
                   speed: 500,
-                  slidesToShow: 1,
-                  slidesToScroll: 1,
+                  slidesToShow: 4,
+                  slidesToScroll: 4,
             };
             return (
                   <div className="section-specialty">
-                        <div className="specialty-content">
-                              <Slider {...settings}>
-                                    <div>
-                                          <h3>1</h3>
-                                    </div>
-                                    <div>
-                                          <h3>2</h3>
-                                    </div>
-                                    <div>
-                                          <h3>3</h3>
-                                    </div>
-                                    <div>
-                                          <h3>4</h3>
-                                    </div>
-                                    <div>
-                                          <h3>5</h3>
-                                    </div>
-                                    <div>
-                                          <h3>6</h3>
-                                    </div>
-                              </Slider>
+                        <div className="specialty-container">
+                              <div className="specialty-header">
+                                    <span className="title-section">
+                                          Chuyên khoa phổ biến
+                                    </span>
+                                    <button className="btn-section">
+                                          xem thêm
+                                    </button>
+                              </div>
+                              <div className="specialty-body">
+                                    <Slider {...settings}>
+                                          <div className="specialty-customize">
+                                                <div className="bg-image" />
+                                                <div>cơ xương khớp 1</div>
+                                          </div>
+                                          <div className="specialty-customize">
+                                                <div className="bg-image" />
+                                                <div>cơ xương khớp 2</div>
+                                          </div>
+                                          <div className="specialty-customize">
+                                                <div className="bg-image" />
+                                                <div>cơ xương khớp 3</div>
+                                          </div>
+                                          <div className="specialty-customize">
+                                                <div className="bg-image" />
+                                                <div>cơ xương khớp 4</div>
+                                          </div>
+                                          <div className="specialty-customize">
+                                                <div className="bg-image" />
+                                                <div>cơ xương khớp 5</div>
+                                          </div>
+                                          <div className="specialty-customize">
+                                                <div className="bg-image" />
+                                                <div>cơ xương khớp 6</div>
+                                          </div>
+                                    </Slider>
+                              </div>
                         </div>
                   </div>
             );
