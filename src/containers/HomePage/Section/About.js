@@ -19,11 +19,11 @@ class About extends Component {
                                           width="100%"
                                           height="250"
                                           src="https://www.youtube.com/embed/hCLtgW-2yZg"
-                                          title="Live Concert Hà Nội Riêng Tôi - Vũ Thắng Lợi"
-                                          frameborder="0"
+                                          title="Live Concert Hà Nội Riêng Tôi - Nguyễn Phú Hải"
+                                          frameBorder="0"
                                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                          referrerpolicy="strict-origin-when-cross-origin"
-                                          allowfullscreen
+                                          referrerPolicy="strict-origin-when-cross-origin"
+                                          allowFullScreen
                                     ></iframe>
                               </div>
                               <div className="content-right">

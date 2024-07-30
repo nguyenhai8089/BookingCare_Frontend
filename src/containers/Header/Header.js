@@ -7,13 +7,15 @@ import { adminMenu } from "./menuApp";
 import { LANGUAGES } from "../../utils/constant";
 import "./Header.scss";
 import { changeLanguageApp } from "../../store/actions";
+import { FormattedMessage } from "react-intl";
 
 class Header extends Component {
       handleChangeLanguage = (language) => {
             this.props.changeLanguageAppRedux(language);
       };
       render() {
-            const { processLogout, language } = this.props;
+            const { processLogout, language, userInfo } = this.props;
+            console.log("check userInfo: ", userInfo);
 
             return (
                   <div className="header-container">
@@ -23,6 +25,13 @@ class Header extends Component {
                         </div>
 
                         <div className="languages">
+                              <span className="welcome">
+                                    <FormattedMessage id="homeheader.welcome" />
+                                    {userInfo && userInfo.firstName
+                                          ? userInfo.firstName
+                                          : ""}
+                                    !
+                              </span>
                               <span
                                     className={
                                           language === LANGUAGES.VI
@@ -68,7 +77,7 @@ const mapStateToProps = (state) => {
       return {
             isLoggedIn: state.user.isLoggedIn,
             language: state.app.language,
-            uage: state.app.language,
+            userInfo: state.user.userInfo,
       };
 };
 

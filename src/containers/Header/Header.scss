@@ -20,17 +20,23 @@
             font-size: $base-size + 1px;
         }
     }
-    .language-en{
-        padding-left: 10px;
-        padding-right: 20px;
-        &.active{
-            color:red;
+    .languages{
+        .welcome{
+            margin-right:10px;
+        }
+        .language-en{
+            padding-left: 10px;
+            padding-right: 20px;
+            &.active{
+                color:red;
+            }
+        }
+        .language-vi{
+            
+            &.active{
+                color:rgb(102, 255, 0);
+            }
         }
     }
-    .language-vi{
-        
-        &.active{
-            color:rgb(102, 255, 0);
-        }
-    }
+    
 }
