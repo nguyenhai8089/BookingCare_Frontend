@@ -1,13 +1,10 @@
+/** @format */
+
 import React, { Component } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import "./UserManage.scss";
-import {
-      getAllUsers,
-      createNewUserService,
-      deleteUserService,
-      editUserService,
-} from "../../services/userService";
+import { getAllUsers, createNewUserService, deleteUserService, editUserService } from "../../services/userService";
 import ModalUser from "./ModalUser";
 import { emitter } from "../../utils/emitter";
 import ModalEditUser from "./ModalEditUser";
@@ -135,7 +132,7 @@ class UserManage extends Component {
             // console.log('check render', this.state)
             let arrUsers = this.state.arrUsers;
             return (
-                  <div className="users-container">
+                  <div className='users-container'>
                         <ModalUser
                               isOpen={this.state.isOpenModalUser}
                               toggleFromParent={this.toggleUserModal}
@@ -151,20 +148,14 @@ class UserManage extends Component {
                               />
                         )}
 
-                        <div className="title text-center">
-                              Manage users with react{" "}
-                        </div>
-                        <div className="mx-1">
-                              <button
-                                    className="btn btn-primary px-3"
-                                    onClick={() => this.handleAddNewUser()}
-                              >
-                                    <i className="fas fa-plus mx-1"></i>Add new
-                                    users
+                        <div className='title text-center'>Manage users with react </div>
+                        <div className='mx-1'>
+                              <button className='btn btn-primary px-3' onClick={() => this.handleAddNewUser()}>
+                                    <i className='fas fa-plus mx-1'></i>Add new users
                               </button>
                         </div>
-                        <div className="users-table mt-3 mx-1">
-                              <table id="customers">
+                        <div className='users-table mt-3 mx-1'>
+                              <table id='customers'>
                                     <tbody>
                                           <tr>
                                                 <th>Email</th>
@@ -179,46 +170,16 @@ class UserManage extends Component {
                                                       // console.log('eric check map',item, index)
                                                       return (
                                                             <tr key={index}>
+                                                                  <td>{item.email}</td>
+                                                                  <td>{item.firstName}</td>
+                                                                  <td>{item.lastName}</td>
+                                                                  <td>{item.address}</td>
                                                                   <td>
-                                                                        {
-                                                                              item.email
-                                                                        }
-                                                                  </td>
-                                                                  <td>
-                                                                        {
-                                                                              item.firstName
-                                                                        }
-                                                                  </td>
-                                                                  <td>
-                                                                        {
-                                                                              item.lastName
-                                                                        }
-                                                                  </td>
-                                                                  <td>
-                                                                        {
-                                                                              item.address
-                                                                        }
-                                                                  </td>
-                                                                  <td>
-                                                                        <button
-                                                                              className="btn-edit"
-                                                                              onClick={() =>
-                                                                                    this.handleEditUser(
-                                                                                          item
-                                                                                    )
-                                                                              }
-                                                                        >
-                                                                              <i className="fas fa-pencil-alt"></i>
+                                                                        <button className='btn-edit' onClick={() => this.handleEditUser(item)}>
+                                                                              <i className='fas fa-pencil-alt'></i>
                                                                         </button>
-                                                                        <button
-                                                                              className="btn-delete"
-                                                                              onClick={() =>
-                                                                                    this.handleDeleteUser(
-                                                                                          item
-                                                                                    )
-                                                                              }
-                                                                        >
-                                                                              <i className="fas fa-trash-alt"></i>
+                                                                        <button className='btn-delete' onClick={() => this.handleDeleteUser(item)}>
+                                                                              <i className='fas fa-trash-alt'></i>
                                                                         </button>
                                                                   </td>
                                                             </tr>

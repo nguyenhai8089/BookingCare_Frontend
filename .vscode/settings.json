@@ -2,5 +2,8 @@
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
     "prettier.bracketSameLine": true,
-    "prettier.printWidth": 160
+    "prettier.printWidth": 160,
+    "files.autoSave": "onWindowChange",
+    "editor.wordWrap": "on",
+    "editor.tabSize": 1
 }
