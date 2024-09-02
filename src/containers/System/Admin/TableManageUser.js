@@ -24,9 +24,13 @@ class TableManageUser extends Component {
             this.props.deleteAUserRedux(user.id);
       };
 
+      handleEditUser = (user) => {
+            this.props.handleEditUserFromParentKey(user);
+      };
+
       render() {
             // console.log('check render', this.state)
-            console.log("hoidanit check All users", this.props.listUsers);
+            // console.log("hoidanit check All users", this.props.listUsers);
             let arrUsers = this.state.usersRedux;
             return (
                   <table id='TableManageUser'>

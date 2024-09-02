@@ -14,19 +14,19 @@ const adminReducer = (state = initialState, action) => {
       switch (action.type) {
             case actionTypes.FETCH_GENDER_START:
                   state.isLoadingGender = true;
-                  console.log("hoidan it fire fetch gender start: ", action);
+                  // console.log("hoidan it fire fetch gender start: ", action);
                   return {
                         ...state,
                   };
             case actionTypes.FETCH_GENDER_SUCCESS:
                   state.genders = action.data;
                   state.isLoadingGender = false;
-                  console.log("hoidan it fire fetch gender success: ", action);
+                  // console.log("hoidan it fire fetch gender success: ", action);
                   return {
                         ...state,
                   };
             case actionTypes.FETCH_GENDER_FAILED:
-                  console.log("hoidan it fire fetch gender failed: ", action);
+                  // console.log("hoidan it fire fetch gender failed: ", action);
                   state.genders = [];
                   state.isLoadingGender = true;
                   return {

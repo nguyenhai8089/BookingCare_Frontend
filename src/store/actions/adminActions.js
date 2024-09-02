@@ -1,7 +1,7 @@
 /** @format */
 
 import actionTypes from "./actionTypes";
-import { getAllCodeService, createNewUserService, getAllUsers, deleteUserService } from "../../services/userService";
+import { getAllCodeService, createNewUserService, getAllUsers, deleteUserService, editUserService } from "../../services/userService";
 // export const fetchGenderStart = () => ({
 //       type: actionTypes.FETCH_GENDER_START,
 // });
@@ -20,7 +20,7 @@ export const fetchGenderStart = () => {
                   }
             } catch (e) {
                   dispatch(fetchGenderFailed());
-                  console.log("fetchGenderStart error", e);
+                  // console.log("fetchGenderStart error", e);
             }
       };
 };
@@ -46,7 +46,7 @@ export const fetchPositionStart = () => {
                   }
             } catch (e) {
                   dispatch(fetchPositionFailed());
-                  console.log("fetchPositionStart error", e);
+                  // console.log("fetchPositionStart error", e);
             }
       };
 };
@@ -122,7 +122,7 @@ export const fetchAllUserStart = () => {
                   }
             } catch (e) {
                   dispatch(fetchAllUserFailed());
-                  console.log("fetchAllUserFailed error", e);
+                  // console.log("fetchAllUserFailed error", e);
             }
       };
 };
@@ -139,7 +139,7 @@ export const deleteAUser = (userId) => {
       return async (dispatch, getState) => {
             try {
                   let res = await deleteUserService(userId);
-                  console.log("hoidanit check create user redux: ", res);
+                  // console.log("hoidanit check create user redux: ", res);
                   if (res && res.errCode === 0) {
                         dispatch(deleteUserSuccess());
                         dispatch(fetchAllUserStart());
@@ -150,7 +150,7 @@ export const deleteAUser = (userId) => {
                   }
             } catch (e) {
                   dispatch(deleteUserFailed());
-                  console.log("deleteUserFailed error", e);
+                  // console.log("deleteUserFailed error", e);
             }
       };
 };
@@ -160,4 +160,31 @@ export const deleteUserSuccess = () => ({
 
 export const deleteUserFailed = () => ({
       type: actionTypes.DELETE_USER_FAILED,
+});
+
+export const editAUser = (userId) => {
+      return async (dispatch, getState) => {
+            try {
+                  let res = await editUserService(userId);
+                  // console.log("hoidanit check create user redux: ", res);
+                  if (res && res.errCode === 0) {
+                        dispatch(editAUserSuccess());
+                        dispatch(fetchAllUserStart());
+                        toast.success("Update người dùng thành công!");
+                  } else {
+                        dispatch(editAUserFailed());
+                        toast.error("Update người dùng không thành công!");
+                  }
+            } catch (e) {
+                  dispatch(deleteUserFailed());
+                  // console.log("deleteUserFailed error", e);
+            }
+      };
+};
+export const editAUserSuccess = () => ({
+      type: actionTypes.EDIT_USER_SUCCESS,
+});
+
+export const editAUserFailed = () => ({
+      type: actionTypes.EDIT_USER_FAILED,
 });
