@@ -26,6 +26,7 @@ class TableManageUser extends Component {
 
       handleEditUser = (user) => {
             this.props.handleEditUserFromParentKey(user);
+            console.log("check edit user:", user);
       };
 
       render() {

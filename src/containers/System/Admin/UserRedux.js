@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import "./UserRedux.scss";
-import { LANGUAGES, CRUD_ACTIONS } from "../../../utils/";
+import { LANGUAGES, CRUD_ACTIONS, CommonUtils } from "../../../utils/";
 import * as actions from "../../../store/actions";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css"; // This only needs to be imported once in your app
@@ -91,6 +91,7 @@ class UserRedux extends Component {
                               position: arrPositions && arrPositions.length > 0 ? arrPositions[0].key : "",
                               role: arrRoles && arrRoles.length > 0 ? arrRoles[0].key : "",
                               avatar: "",
+                              previewImgURL: "",
                               action: CRUD_ACTIONS.CREATE,
                         }
                         // () => console.log("check set state: ", this.state)
@@ -106,14 +107,16 @@ class UserRedux extends Component {
                   </div>
             );
       };
-      handleOnchangeImage = (event) => {
+      handleOnchangeImage = async (event) => {
             let data = event.target.files;
             let file = data[0];
             if (file) {
+                  let base64 = await CommonUtils.getBase64(file);
+                  console.log("hoidanit base64 image: ", base64);
                   let objectUrl = URL.createObjectURL(file);
                   this.setState({
                         previewImgURL: objectUrl,
-                        avatarURL: file,
+                        avatar: base64,
                   });
             }
 
@@ -144,6 +147,7 @@ class UserRedux extends Component {
                         gender: this.state.gender,
                         roleId: this.state.role,
                         positionId: this.state.position,
+                        avatar: this.state.avatar,
                   });
                   // console.log("hoidanit before submit check state: ", this.state)
             }
@@ -160,6 +164,7 @@ class UserRedux extends Component {
                         gender: this.state.gender,
                         roleId: this.state.role,
                         positionId: this.state.position,
+                        avatar: this.state.avatar,
                   });
             }
       };
@@ -187,6 +192,10 @@ class UserRedux extends Component {
       };
       handleEditUserFromParent = (user) => {
             // console.log("check edit user from parent: ", user);
+            let imageBase64 = "";
+            if (user.image) {
+                  imageBase64 = new Buffer(user.image, "base64").toString("binary");
+            }
             this.setState({
                   email: user.email,
                   password: "hardcoded",
@@ -198,6 +207,7 @@ class UserRedux extends Component {
                   position: user.positionId,
                   role: user.roleId,
                   avatar: "",
+                  previewImgURL: imageBase64,
                   action: CRUD_ACTIONS.EDIT,
                   userEditId: user.id,
             });
